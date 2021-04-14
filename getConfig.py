@@ -1,7 +1,8 @@
 from netmiko import ConnectHandler
+from netmiko.ssh_exception import NetMikoTimeoutException
 from getpass import getpass
 
-username = input('Please enter SSH username: ')
+user = input('Please enter SSH username: ')
 secret = getpass('Please enter SSH password: ')
 
 ciscoDevice = {
@@ -11,4 +12,9 @@ ciscoDevice = {
         'password': secret
 }
 
-connection = ConnectHandler(**ciscoDevice)
+try:
+    connection = ConnectHandler(**ciscoDevice)
+except (NetMikoTimeoutException):
+    print('The following device timed out: ' + ciscoDevice['host'])
+
+print('The script has completed')
