@@ -3,6 +3,7 @@ from netmiko.ssh_exception import NetMikoTimeoutException
 from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import AuthenticationException
 from getpass import getpass
+import datetime
 
 user = input('Please enter SSH username: ')
 secret = getpass('Please enter SSH password: ')
@@ -16,6 +17,8 @@ ciscoDevice = {
 
 try:
     connection = ConnectHandler(**ciscoDevice)
+    output = net_connect.send_command("show run")
+    print(output, file=open("%s.txt" % date, "a+"))
 except (NetMikoTimeoutException):
     print('The following device timed out: ' + ciscoDevice['host'])
 except (AuthenticationException):
