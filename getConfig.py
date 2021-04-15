@@ -20,7 +20,7 @@ except (NetMikoTimeoutException):
     print('The following device timed out: ' + ciscoDevice['host'])
 except (AuthenticationException):
     print('Authentication failure on: ' + ciscoDevice['host'])
-except (SSHExcetion):
+except (SSHException):
     print('Could not connect to the device with SSH.  Check your SSH settings on: ' + ciscoDevice['host'])
 except (EOFError):
     print('End of file while attempting: ' + ciscoDevice['host'])
