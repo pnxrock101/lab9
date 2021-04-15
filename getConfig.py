@@ -17,7 +17,7 @@ ciscoDevice = {
 
 try:
     connection = ConnectHandler(**ciscoDevice)
-    output = net_connect.send_command("show run")
+    output = connection.send_command("show run")
     print(output, file=open("%s.txt" % date, "a+"))
 except (NetMikoTimeoutException):
     print('The following device timed out: ' + ciscoDevice['host'])
