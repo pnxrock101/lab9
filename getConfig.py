@@ -7,6 +7,7 @@ import datetime
 
 user = input('Please enter SSH username: ')
 secret = getpass('Please enter SSH password: ')
+date = datetime.date.today()
 
 ciscoDevice = {
         'device_type': 'cisco_ios',
